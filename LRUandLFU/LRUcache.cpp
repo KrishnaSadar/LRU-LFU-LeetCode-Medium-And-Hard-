@@ -70,3 +70,39 @@ LRUCache(int cap1){
      }
 
 };
+int main() {
+    // Create an LRUCache with a capacity of 2
+    LRUCache cache(2);
+
+    // Add key-value pairs to the cache
+    cache.put(1, 10);
+    cache.put(2, 20);
+    
+    // Retrieve values using get() method
+    cout << "Value for key 1: " << cache.get(1) << endl;  // Should return 10
+    cout << "Value for key 2: " << cache.get(2) << endl;  // Should return 20
+
+    // Add another key-value pair, which will cause the least recently used (key 1) to be evicted
+    cache.put(3, 30);
+    
+    // Now, key 1 should be evicted, so get(1) should return -1
+    cout << "Value for key 1 after eviction: " << cache.get(1) << endl;  // Should return -1
+
+    // Key 2 should still be in the cache
+    cout << "Value for key 2: " << cache.get(2) << endl;  // Should return 20
+    
+    // Key 3 should also be in the cache
+    cout << "Value for key 3: " << cache.get(3) << endl;  // Should return 30
+
+    // Add another key-value pair, which will cause key 2 (least recently used) to be evicted
+    cache.put(4, 40);
+    
+    // Now, key 2 should be evicted, so get(2) should return -1
+    cout << "Value for key 2 after eviction: " << cache.get(2) << endl;  // Should return -1
+
+    // Key 3 and key 4 should still be in the cache
+    cout << "Value for key 3: " << cache.get(3) << endl;  // Should return 30
+    cout << "Value for key 4: " << cache.get(4) << endl;  // Should return 40
+
+    return 0;
+}
